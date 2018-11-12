@@ -8,16 +8,16 @@ def signup(request):
         if request.POST['password'] == request.POST['password_conf']:
             try:
                 user= User.objects.get(username=request.POST['username'])
-                return render(request, 'account/signup.html', {'error':'Username already taken!'})
+                return render(request, 'accounts/signup.html', {'error':'Username already taken!'})
             except User.DoesNotExist:
 
                 user = User.objects.create_user(request.POST['username'],  password=request.POST['password'])
                 login(request, user)
-                return render(request, 'account/signup.html')
+                return render(request, 'accounts/signup.html')
         else:
-            return render(request, 'account/signup.html', {'error':'Password didn\'t match!'})
+            return render(request, 'accounts/signup.html', {'error':'Password didn\'t match!'})
     else:
-        return render(request, 'account/signup.html')
+        return render(request, 'accounts/signup.html')
 
 def loginview(request):
     if request.method == 'POST':
@@ -26,10 +26,10 @@ def loginview(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return render(request, 'account/login.html', {'error':'Login Successful!!'})
+            return render(request, 'accounts/login.html', {'error':'Login Successful!!'})
         # Redirect to a success page.
         else:
         # Return an 'invalid login' error message.
-            return render(request, 'account/login.html', {'error':'Authentication Error!'})
+            return render(request, 'accounts/login.html', {'error':'Authentication Error!'})
     else:
-            return render(request, 'account/login.html')
+            return render(request, 'accounts/login.html')

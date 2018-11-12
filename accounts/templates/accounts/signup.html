@@ -7,7 +7,7 @@
 {% endif %}
 
 
-<form method="POST" action="{% url 'signup' %}">
+<form method="POST" action="{% url 'accounts:signup' %}">
   {% csrf_token %}
 
   Username:

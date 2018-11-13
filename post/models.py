@@ -9,3 +9,6 @@ class Post(models.Model):
     pub_date = models.DateTimeField()
     author = models.ForeignKey(User)
     votes_total = models.IntegerField(default = 0)
+
+    def pub_date_pretty(self):
+        return self.pub_date.strftime('%e %b %Y')

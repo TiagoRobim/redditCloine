@@ -2,11 +2,7 @@
 
 {% block content %}
 
-<h1>This is the page to Nowhere!</h1>
-
-<a class="btn btn-dark" href="{% url 'post:create' %}">New Post</a>
-
-</br>
+<h1>This is the posts of {{author.username}}!</h1>
 </br>
 
 {% for post in post.all %}
@@ -15,7 +11,7 @@
   <tr>
     <td style="padding-right: 20px;"><a href="#" onClick="document.getElementById('upvote{{ post.id }}').submit()"><i class="fas fa-caret-up"></i></a></br>{{post.votes_total}}</br>
       <a href="#" onClick="document.getElementById('downvote{{ post.id }}').submit()"><i class="fas fa-caret-down"></i></a></td>
-    <td><a href="{{ post.url }}">{{post.title}}</a></br>{{post.pub_date_pretty}} by <a href="{% url 'post:userpost' post.author.id %}">{{post.author.username}}</a></td>
+    <td><a href="{{ post.url }}">{{post.title}}</a></br>{{post.pub_date_pretty}} by {{post.author.username}}</td>
   </tr>
 </table>
 </br>
